@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Heart Animation</title>
+    <style>
+        /* यहाँ CSS कोड है */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #050508;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #ui {
+            position: relative;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: rotateScene 12s infinite linear;
+        }
+
+        /* इमेज वाला मुख्य CSS क्लास */
+        #ui .love_word {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ea80b0;
+            font-size: 1.4rem;
+            text-shadow: 0 0 10px #fff;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            display: inline-block;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* 3D रोटेशन एनीमेशन */
+        @keyframes rotateScene {
+            0% { transform: rotateY(0deg) rotateX(10deg); }
+            100% { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) translateY(-100%) rotateZ(-30deg); opacity: 0.8; }
+            50% { transform: scale(1.1) translateY(-100%) rotateZ(-30deg); opacity: 1; text-shadow: 0 0 20px #ea80b0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- एनीमेशन कंटेनर -->
+    <div id="ui"></div>
+
+    <!-- JavaScript: जो गणितीय (Mathematical) फार्मूला लगाकर टेक्स्ट से दिल का शेप बनाएगा -->
+    <script>
+        const ui = document.getElementById('ui');
+        const totalWords = 100; // स्क्रीन पर दिखने वाले शब्दों की संख्या
+
+        for (let i = 0; i < totalWords; i++) {
+            const span = document.createElement('span');
+            span.className = 'love_word';
+            span.innerText = 'I love you';
+
+            // गणितीय फार्मूला (Heart Shape Formula)
+            const t = (i / totalWords) * 2 * Math.PI;
+            
+            // दिल का आकार (X और Y कोऑर्डिनेट्स)
+            const x = 16 * Math.pow(Math.sin(t), 3) * 15;
+            const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * 15;
+            
+            // गहराई (3D इफेक्ट के लिए Z-axis)
+            const z = (Math.random() - 0.5) * 30; 
+
+            // हर एक शब्द को उसकी सही जगह पर सेट करना
+            span.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${t * 50}deg)`;
+            
+            // एनीमेशन में थोड़ा टाइम डिले ताकि सब एक साथ न चमकें
+            span.style.animationDelay = `${Math.random() * 2}s`;
+
+            ui.appendChild(span);
+        }
+    </script>
+</body>
+</html>

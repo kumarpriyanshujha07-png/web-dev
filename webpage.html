@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Basic Web Page</title>
+    
+    <!-- CSS: Yahan se design aur styling shuru hoti hai -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Button design */
+        .btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s ease;
+        }
+
+        /* Button par mouse le jaane par color change hoga */
+        .btn:hover {
+            background-color: #27ae60;
+        }
+
+        /* Counter text display */
+        .counter-display {
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HTML: Yahan se web page ka structure banta hai -->
+    <div class="box">
+        <h1>Hello World! 👋</h1>
+        <p>Yeh HTML, CSS, aur JavaScript se bana ek basic web page hai.</p>
+        
+        <!-- Is button par click karne se JavaScript trigger hogi -->
+        <button class="btn" onclick="upgradeNumber()">Click Karo</button>
+        
+        <!-- Yahan par number change hoga -->
+        <div class="counter-display" id="numberTag">0</div>
+    </div>
+
+    <!-- JavaScript: Yahan se page ka logic aur action control hota hai -->
+    <script>
+        // Ek variable banaya jo number track karega
+        let score = 0;
+
+        // Yeh function tab chalega jab button click hoga
+        function upgradeNumber() {
+            score = score + 1; // Har click par +1 karega
+            document.getElementById("numberTag").innerText = score; // Screen par naya number dikhayega
+        }
+    </script>
+
+</body>
+</html>
